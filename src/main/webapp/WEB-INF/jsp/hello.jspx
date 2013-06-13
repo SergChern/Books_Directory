@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<link type="text/css" rel="stylesheet" href="books.css" />
+
+	<jsp:directive.page contentType="text/html" pageEncoding="UTF-8"
+		trimDirectiveWhitespaces="true" />
+	<jsp:output omit-xml-declaration="yes" />
+
+	<a class="color_href" href="list_of_books.htm"><spring:message
+			code="list_of_books" /> </a> <br /> 
+	<a class="color_href"
+		href="list_of_authors.htm"><spring:message code="list_of_authors" />
+	</a> <br />
+</div>

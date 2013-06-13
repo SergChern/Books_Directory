@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<link type="text/css" rel="stylesheet" href="books.css" />
+
+	<jsp:directive.page contentType="text/html" pageEncoding="UTF-8"
+		trimDirectiveWhitespaces="true" />
+	<jsp:output omit-xml-declaration="yes" />
+
+
+	System failure
+	<!-- 
+<% Exception ex = (Exception)request.getAttribute(“Exception”); %>
+<H2>System failure cause: <% ex.getMessage() %></H2>
+<P/>
+<% ex.printStackTrace(new java.io.PrintWriter(out); %>
+ -->
+</div>

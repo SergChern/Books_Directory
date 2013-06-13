@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE form-validation PUBLIC 
+     "-//Apache Software Foundation//DTD 
+            Commons Validator Rules Configuration 1.1//EN" 
+     "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
+
+<form-validation>
+	<formset>
+		<form name="create_the_author">
+			<!--Requires name -->
+			<field property="name" depends="required">
+				<arg0 key="required.name" />
+			</field>
+			<!--Requires surname -->
+			<field property="surname" depends="required">
+				<arg0 key="required.surname" />
+			</field>
+		</form>
+	</formset>
+</form-validation>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="template" template="/WEB-INF/jsp/booksTemplate.jspx">
+		<put-attribute name="title" value="/WEB-INF/jsp/title.jspx" />
+		<put-attribute name="header" value="" />
+		<put-attribute name="content" value="" />
+	</definition>
+
+	<definition name="hello" extends="template">
+		<put-attribute name="content" value="/WEB-INF/jsp/hello.jspx" />
+	</definition>
+
+	<definition name="list_of_books_by_the_author" extends="template">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/list_of_books_by_the_author.jspx" />
+	</definition>
+	<definition name="create_the_author" extends="template">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/create_the_author.jspx" />
+	</definition>
+	<definition name="list_of_authors" extends="template">
+		<put-attribute name="content" value="/WEB-INF/jsp/list_of_authors.jspx" />
+	</definition>
+	<definition name="creating_a_of_the_book" extends="template">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/creating_a_of_the_book.jspx" />
+	</definition>
+	<definition name="list_of_books" extends="template">
+		<put-attribute name="content" value="/WEB-INF/jsp/list_of_books.jspx" />
+	</definition>
+	<definition name="friendlyError" extends="template">
+		<put-attribute name="content" value="/WEB-INF/jsp/friendlyError.jspx" />
+	</definition>
+
+</tiles-definitions>

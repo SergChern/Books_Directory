@@ -1,0 +1,83 @@
+﻿<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form">
+
+	<link type="text/css" rel="stylesheet" href="books.css" />
+
+	<jsp:directive.page contentType="text/html" pageEncoding="UTF-8"
+		trimDirectiveWhitespaces="true" />
+	<jsp:output omit-xml-declaration="yes" />
+
+	<form:form method="POST" action="creating_a_of_the_book.htm"
+		commandName="book">
+		<br />
+		<b><spring:message code="fill_in_the_required_values_and_click_on" />
+		</b>
+		<blok_hide>____</blok_hide>
+		<c:choose>
+			<c:when test="${book.id == null}">
+				<c:set var="butname">
+					<spring:message code="create" />
+				</c:set>
+				<input type="submit" value="${butname}" />
+			</c:when>
+			<c:otherwise>
+				<c:set var="butname">
+					<spring:message code="apply" />
+				</c:set>
+				<input type="submit" value="${butname}" />
+			</c:otherwise>
+		</c:choose>
+		<br />
+		<form:input path="id" cssClass="elem_hide" />
+		<br />
+		<form:label path="name" cssClass="creat_book_label_right">
+			<spring:message code="name" />
+		</form:label>
+		<blok_hide>____</blok_hide>
+		<form:input path="name" />
+		<form:errors path="name" cssClass="error" />
+		<br />
+		<br />
+
+		<form:label path="brief_Description" cssClass="creat_book_label_right">
+			<spring:message code="brief_description" />
+		</form:label>
+		<blok_hide>____</blok_hide>
+		<form:textarea path="brief_Description" rows="5" cols="50" />
+		<form:errors path="brief_Description" cssClass="error" />
+		<br />
+		<br />
+
+		<form:label path="year_Of_Publication"
+			cssClass="creat_book_label_right">
+			<spring:message code="year_of_publication" />
+		</form:label>
+		<blok_hide>____</blok_hide>
+		<form:input path="year_Of_Publication" />
+		<form:errors path="year_Of_Publication" cssClass="error" />
+		<br />
+		<br />
+
+		<form:label path="authors" cssClass="creat_book_label_right">
+			<spring:message code="authors" />
+		</form:label>
+		<blok_hide>____</blok_hide>
+		<form:select path="authors" id="authors" multiple="true" size="6"
+			itemValue="id">
+			<c:forEach var="author" items="${book.authors}">
+				<OPTION SELECTED="selected" value="${author.id}">${author.name}__${author.surname}</OPTION>
+			</c:forEach>
+
+			<c:forEach var="author0" items="${allAuthors}">
+				<OPTION value="${author0.id}">${author0.name}__${author0.surname}</OPTION>
+			</c:forEach>
+
+		</form:select>
+
+		<form:errors path="authors" cssClass="error" />
+		<br />
+		<br />
+	</form:form>
+</div>

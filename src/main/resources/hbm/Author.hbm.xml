@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping
+    PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="books.server">
+
+	<class name="Author" table="author">
+		<id column="id" name="Id" type="java.lang.Long">
+			<generator class="native" />
+		</id>
+		<property column="surname" name="surname" type="java.lang.String"
+			length="30" not-null="true" />
+		<property column="author_name" name="name" type="java.lang.String"
+			length="15" not-null="true" />
+
+		<set name="books" cascade="save-update" inverse="true" table="author_book"
+			lazy="true">
+			<key column="fk_author_id" not-null="true" />
+			<many-to-many class="Book" column="fk_book_id" />
+		</set>
+	</class>
+	<sql-query name="getAuthorAll">
+<![CDATA[
+select * FROM author a
+  where a.id not in (
+    SELECT a.id FROM author a  join author_book ab on ab.fk_author_id=a.id
+      join Book b on b.id = ab.fk_book_id where b.id=:id)
+]]>
+	</sql-query>
+	<sql-query name="deleteAuthor1">
+<![CDATA[
+delete FROM author_book where fk_author_id=:id
+]]>
+	</sql-query>
+	<sql-query name="deleteAuthor2">
+<![CDATA[
+delete FROM Book where id=:id
+]]>
+	</sql-query>
+	<sql-query name="deleteAuthor3">
+<![CDATA[
+delete FROM author where id=:id
+]]>
+	</sql-query>
+
+</hibernate-mapping>

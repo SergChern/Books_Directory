@@ -1,0 +1,75 @@
+﻿<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form">
+	<link type="text/css" rel="stylesheet" href="books.css" />
+
+	<jsp:directive.page contentType="text/html" pageEncoding="UTF-8"
+		trimDirectiveWhitespaces="true" />
+	<jsp:output omit-xml-declaration="yes" />
+
+	<br />
+	<caption_greasy> <spring:message code="list_of_books" />
+	</caption_greasy>
+
+	<table class="table_bord">
+		<tr>
+			<th class="lc"><spring:message code="name" />
+			</th>
+			<th class="gray"><spring:message code="brief_description" />
+			</th>
+			<th class="gray"><spring:message code="year_of_publication" />
+			</th>
+			<th class="gray"><spring:message code="authors" />
+			</th>
+		</tr>
+		<c:set var="even" value="false" />
+		<c:forEach var="book" items="${books}">
+			<c:set var="first" value="true" />
+			<c:forEach var="author" items="${book.authors}">
+				<c:choose>
+					<c:when test="${even == 'false'}">
+						<tr>
+							<c:choose>
+								<c:when test="${first == 'true'}">
+									<c:set var="first" value="false" />
+									<td class="lctd">${book.name}</td>
+									<td class="td_bord">${book.brief_Description}</td>
+									<td class="td_bord">${book.year_Of_Publication}</td>
+								</c:when>
+								<c:otherwise>
+									<td class="lctd"></td>
+									<td class="td_bord"></td>
+									<td class="td_bord"></td>
+								</c:otherwise>
+							</c:choose>
+							<td class="td_bord">${author}</td>
+						</tr>
+
+						<c:set var="even" value="true" />
+					</c:when>
+					<c:otherwise>
+						<tr class="tr_even">
+							<c:choose>
+								<c:when test="${first == 'true'}">
+									<c:set var="first" value="false" />
+									<td class="lctd">${name0}</td>
+									<td class="td_bord">${book.brief_Description}</td>
+									<td class="td_bord">${book.year_Of_Publication}</td>
+								</c:when>
+								<c:otherwise>
+									<td class="lctd"></td>
+									<td class="td_bord"></td>
+									<td class="td_bord"></td>
+								</c:otherwise>
+							</c:choose>
+							<td class="td_bord">${author}</td>
+						</tr>
+
+						<c:set var="even" value="false" />
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+		</c:forEach>
+	</table>
+</div>

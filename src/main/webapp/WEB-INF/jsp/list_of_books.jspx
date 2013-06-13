@@ -1,0 +1,125 @@
+﻿<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form">
+
+	<link type="text/css" rel="stylesheet" href="books.css" />
+
+	<jsp:directive.page contentType="text/html" pageEncoding="UTF-8"
+		trimDirectiveWhitespaces="true" />
+	<jsp:output omit-xml-declaration="yes" />
+
+	<form:form method="POST" action="list_of_books.htm" commandName="book">
+		<br />
+		<spring:message code="enter_the_name_of_the_book" />
+		<blok_hide>__</blok_hide>
+
+		<form:input path="name" />
+
+		<blok_hide>__</blok_hide>
+		<c:set var="butname">
+			<spring:message code="look_for_the_book" />
+		</c:set>
+		<input type="submit" value="${butname}" name="seek" />
+		<br />
+		<br />
+		<caption_greasy> <spring:message code="list_of_books" />
+		</caption_greasy>
+		<c:if test="${login0 == 'admin'}">
+			<c:set var="butname">
+				<spring:message code="create_a_new_workbook" />
+			</c:set>
+			<input class="right_but" type="button" value="${butname}"
+				onclick="openPage('creating_a_of_the_book.htm')" />
+			<br />
+		</c:if>
+
+		<table class="table_bord">
+			<tr>
+				<th class="lc"><spring:message code="name" /></th>
+				<th class="gray"><spring:message code="brief_description" /></th>
+				<th class="gray"><spring:message code="year_of_publication" />
+				</th>
+				<th class="gray"><spring:message code="authors" /></th>
+				<c:if test="${login0 == 'admin'}">
+					<th class="gray"><spring:message code="actions" /></th>
+				</c:if>
+			</tr>
+			<c:set var="even" value="false" />
+			<c:forEach var="book" items="${books}">
+				<c:set var="first" value="true" />
+				<c:forEach var="author" items="${book.authors}">
+					<c:choose>
+						<c:when test="${even == 'false'}">
+							<tr>
+								<c:choose>
+									<c:when test="${first == 'true'}">
+										<c:set var="first" value="false" />
+										<td class="lctd">${book.name}</td>
+										<td class="td_bord">${book.brief_Description}</td>
+										<td class="td_bord">${book.year_Of_Publication}</td>
+										<td class="td_bord">${author}</td>
+										<td><c:if test="${login0 == 'admin'}">
+												<a class="color_href"
+													href="creating_a_of_the_book.htm?id=${book.id}"><spring:message
+														code="retrofit" /> </a>,
+                                        <a class="color_href"
+													href="list_of_books.htm?del=${book.id}"><spring:message
+														code="to_delete" /> </a>
+											</c:if>
+										</td>
+									</c:when>
+									<c:otherwise>
+										<td class="lctd"></td>
+										<td class="td_bord"></td>
+										<td class="td_bord"></td>
+										<td class="td_bord">${author}</td>
+										<td class="td_bord"></td>
+									</c:otherwise>
+								</c:choose>
+							</tr>
+							<c:set var="even" value="true" />
+						</c:when>
+						<c:otherwise>
+							<tr class="tr_even">
+								<c:choose>
+									<c:when test="${first == 'true'}">
+										<c:set var="first" value="false" />
+										<td class="lctd">${book.name}</td>
+										<td class="td_bord">${book.brief_Description}</td>
+										<td class="td_bord">${book.year_Of_Publication}</td>
+										<td class="td_bord">${author}</td>
+										<td><c:if test="${login0 == 'admin'}">
+												<a class="color_href"
+													href="creating_a_of_the_book.htm?id=${book.id}"><spring:message
+														code="retrofit" /> </a>,
+                                                <a class="color_href"
+													href="list_of_books.htm?del=${book.id}"><spring:message
+														code="to_delete" /> </a>
+											</c:if>
+										</td>
+
+									</c:when>
+									<c:otherwise>
+										<td class="lctd"></td>
+										<td class="td_bord"></td>
+										<td class="td_bord"></td>
+										<td class="td_bord">${author}</td>
+										<td class="td_bord"></td>
+									</c:otherwise>
+								</c:choose>
+							</tr>
+							<c:set var="even" value="false" />
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</c:forEach>
+		</table>
+	</form:form>
+	<script type="text/javascript">
+ function openPage(pageURL)
+ {
+ window.location.href = pageURL;
+ }
+</script>
+</div>

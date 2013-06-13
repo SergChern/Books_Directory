@@ -1,0 +1,2 @@
+mvn package >pack.log
+

@@ -1,0 +1,53 @@
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form">
+
+	<link type="text/css" rel="stylesheet" href="books.css" />
+
+	<jsp:directive.page contentType="text/html" pageEncoding="UTF-8"
+		trimDirectiveWhitespaces="true" />
+
+	<jsp:output omit-xml-declaration="yes" />
+
+	<form:form method="POST" action="create_the_author.htm"
+		commandName="author">
+		<br />
+		<b><spring:message code="fill_in_the_required_values_and_click_on" />
+		</b>
+		<blok_hide>____</blok_hide>
+		<c:choose>
+			<c:when test="${author.id == null}">
+				<c:set var="butname">
+					<spring:message code="create" />
+				</c:set>
+				<input type="submit" value="${butname}" />
+			</c:when>
+			<c:otherwise>
+				<c:set var="butname">
+					<spring:message code="apply" />
+				</c:set>
+				<input type="submit" value="${butname}" />
+			</c:otherwise>
+		</c:choose>
+
+		<br />
+		<br />
+
+		<form:input path="id" cssClass="elem_hide" />
+		<form:label path="surname">
+			<spring:message code="surname" />
+		</form:label>
+		<blok_hide>__</blok_hide>
+		<form:input path="surname" />
+		<form:errors path="surname" cssClass="error" />
+		<br />
+		<form:label path="name">
+			<spring:message code="author_name" />
+		</form:label>
+		<blok_hide>____</blok_hide>
+		<form:input path="name" />
+		<form:errors path="name" cssClass="error" />
+		<br />
+	</form:form>
+</div>

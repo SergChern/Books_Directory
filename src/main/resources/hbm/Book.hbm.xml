@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping
+    PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="books.server">
+
+	<class name="Book" table="book">
+		<id column="id" name="Id" type="java.lang.Long">
+			<generator class="native" />
+		</id>
+		<property column="name" name="name" type="java.lang.String"
+			length="120" not-null="true" />
+		<property column="brief_description" name="brief_Description"
+			type="java.lang.String" length="255" not-null="true" />
+		<property column="year_of_publication" name="year_Of_Publication"
+			type="java.lang.String" length="4" not-null="true" />
+		<set name="authors" cascade="save-update" inverse="false" table="author_book"
+			lazy="false">
+			<key column="fk_book_id" not-null="true" />
+			<many-to-many class="Author" column="fk_author_id" />
+		</set>
+	</class>
+	<sql-query name="getBooksAuthor">
+<![CDATA[
+SELECT * FROM Book b join author_book ab on b.id = ab.fk_book_id
+  join author a on ab.fk_author_id=a.id where a.id=:id
+   ORDER BY b.name
+]]>
+	</sql-query>
+	<sql-query name="findBooks">
+<![CDATA[
+SELECT * FROM Book b where LOWER(b.name) like LOWER(:name) ORDER BY b.name
+]]>
+	</sql-query>
+
+</hibernate-mapping>
