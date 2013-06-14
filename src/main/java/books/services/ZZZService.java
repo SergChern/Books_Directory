@@ -22,8 +22,10 @@ import books.server.dao.IEntityDao;
 public class ZZZService {
     private BookDao bookDao;
     private AuthorDao authorDao;
-    private List snakes = new ArrayList();   
-    
+    private List snakes = new ArrayList();
+    Session session = null;
+    Query query = null;
+
     public ZZZService() {
     }
 
@@ -44,8 +46,7 @@ public class ZZZService {
     @Transactional(readOnly = false, propagation = Propagation.SUPPORTS)
     public List getAuthors() throws IllegalArgumentException {
         Criteria q = HibernateUtil.getCurSession().createCriteria(Author.class);
-        List rezult = q.list();
-        return rezult;
+        return q.list();
     }
 
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
@@ -75,45 +76,45 @@ public class ZZZService {
         return snakeList;
     }
 
-    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    @Transactional(readOnly = false, propagation = Propagation.SUPPORTS)
     public void saveOrUpdate(Object entity) {
+        session = HibernateUtil.getCurrentSession();
         try {
-            HibernateUtil.getCurSession().saveOrUpdate(entity);
-            HibernateUtil.getCurSession().getTransaction().commit();
+            session.saveOrUpdate(entity);
+            session.getTransaction().commit();
         } catch (RuntimeException e) {
-            HibernateUtil.getCurSession().getTransaction().rollback();
+            session.getTransaction().rollback();
             throw e; // or display error message
         }
     }
 
-    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    @Transactional(readOnly = false, propagation = Propagation.SUPPORTS)
     public void delete(Object entity) {
+        session = HibernateUtil.getCurrentSession();
         try {
-            HibernateUtil.getCurSession().delete(entity);
-            HibernateUtil.getCurSession().getTransaction().commit();
+            session.delete(entity);
+            session.getTransaction().commit();
         } catch (RuntimeException e) {
-            HibernateUtil.getCurSession().getTransaction().rollback();
+            session.getTransaction().rollback();
             throw e; // or display error message
         }
     }
 
     @Transactional(readOnly = false, propagation = Propagation.SUPPORTS)
     public List getBooks(Long idAuthor) throws IllegalArgumentException {
-        String sql = bookDao.getCurSession().getNamedQuery("getBooksAuthor").getQueryString();
-
-        Query query = HibernateUtil.getCurSession().createSQLQuery(sql).addEntity(Book.class);
-        List result = query.setLong("id", idAuthor).list();
-        return result;
+        session = HibernateUtil.getCurrentSession();
+        String sql = session.getNamedQuery("getBooksAuthor").getQueryString();
+        query = session.createSQLQuery(sql).addEntity(Book.class);
+        return query.setLong("id", idAuthor).list();
     }
 
     @Transactional(readOnly = false, propagation = Propagation.SUPPORTS)
     public List findBooks(String seekName) throws IllegalArgumentException {
         seekName = "%" + seekName + "%";
-        String sql = bookDao.getCurSession().getNamedQuery("findBooks").getQueryString();
-
-        Query query = HibernateUtil.getCurSession().createSQLQuery(sql).addEntity(Book.class);
-        List result = query.setString("name", seekName).list();
-        return result;
+        session = HibernateUtil.getCurSession();
+        String sql = session.getNamedQuery("findBooks").getQueryString();
+        query = session.createSQLQuery(sql).addEntity(Book.class);
+        return query.setString("name", seekName).list();
     }
 
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
@@ -121,35 +122,35 @@ public class ZZZService {
         if (id == null)
             id = new Long(0);
 
-        String sql = authorDao.getCurSession().getNamedQuery("getAuthorAll").getQueryString();
-        Query query = HibernateUtil.getCurSession().createSQLQuery(sql).addEntity(Author.class);
-        List result = query.setLong("id", id).list();
-        return result;
+        session = HibernateUtil.getCurrentSession();
+        String sql = session.getNamedQuery("getAuthorAll").getQueryString();
+        query = session.createSQLQuery(sql).addEntity(Author.class);
+        return query.setLong("id", id).list();
     }
 
     @Transactional(readOnly = false, propagation = Propagation.SUPPORTS)
     public void deleteAuthor(Long idAuthor, Long idBook) throws IllegalArgumentException {
-        Session session = HibernateUtil.getCurSession();
+        session = HibernateUtil.getCurrentSession();
         String sql = null;
 
         try {
-            sql = authorDao.getCurSession().getNamedQuery("deleteAuthor1").getQueryString();
-
-            Query query = session.createSQLQuery(sql);
+            sql = session.getNamedQuery("deleteAuthor1").getQueryString();
+            query = session.createSQLQuery(sql);
             query.setLong("id", idAuthor);
             query.executeUpdate();
 
             if (idBook != null) {
-                sql = authorDao.getCurSession().getNamedQuery("deleteAuthor2").getQueryString();
+                sql = session.getNamedQuery("deleteAuthor2").getQueryString();
                 query = session.createSQLQuery(sql);
                 query.setLong("id", idBook);
                 query.executeUpdate();
             }
 
-            sql = authorDao.getCurSession().getNamedQuery("deleteAuthor3").getQueryString();
+            sql = session.getNamedQuery("deleteAuthor3").getQueryString();
             query = session.createSQLQuery(sql);
             query.setLong("id", idAuthor);
             query.executeUpdate();
+
             session.getTransaction().commit();
         } catch (RuntimeException e) {
             session.getTransaction().rollback();
@@ -157,4 +158,3 @@ public class ZZZService {
         }
     }
 }
-
