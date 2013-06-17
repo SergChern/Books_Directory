@@ -10,4 +10,11 @@
 		<property name="authorDao" ref="authorDAO" />
 	</bean>
 
+	<bean id="userManager" class="books.services.UserManager">
+	</bean>
+
+	<bean id="customUserDetailsService" class="books.services.CustomUserDetailsService">
+		<property name="userManager" ref="userManager" />
+	</bean>
+
 </beans>

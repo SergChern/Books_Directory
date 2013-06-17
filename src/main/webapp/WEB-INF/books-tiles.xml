@@ -11,6 +11,16 @@
 		<put-attribute name="content" value="" />
 	</definition>
 
+	<definition name="login" extends="template">
+		<put-attribute name="title" value="" />
+		<put-attribute name="content" value="/WEB-INF/jsp/login.jspx" />
+	</definition>
+
+	<definition name="login_failure" extends="template">
+		<put-attribute name="title" value="" />
+		<put-attribute name="content" value="/WEB-INF/jsp/login_failure.jspx" />
+	</definition>
+
 	<definition name="hello" extends="template">
 		<put-attribute name="content" value="/WEB-INF/jsp/hello.jspx" />
 	</definition>

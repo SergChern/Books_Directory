@@ -90,3 +90,37 @@ blok_hide {
 	color: transparent;
 	border: none;
 }
+
+.label_field {
+	float: left;
+	padding-right: 10px;
+}
+
+.field {
+	clear: both;
+	text-align: right;
+	line-height: 25px;
+}
+
+.login_button {
+	position: relative;
+	top: 20px;
+	left: 110px;
+}
+
+.login_label {
+	font-weight: bolder;
+	clear: both;
+	text-align: center;
+}
+
+.main {
+	border: 2px solid black;
+	float: left;
+	width: 300px;
+	height: 130px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -100px 0 0 -150px;
+}

@@ -22,6 +22,10 @@ http://www.springframework.org/schema/mvc
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
+	<bean name="/login.htm" class="books.mvc.LoginController">
+	</bean>
+	<bean name="/login_failure.htm" class="books.mvc.LoginController">
+	</bean>
 	<bean name="/hello.htm" class="books.mvc.HelloController">
 		<property name="zzzService" ref="zzzService" />
 	</bean>

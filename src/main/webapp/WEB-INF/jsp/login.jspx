@@ -1,0 +1,38 @@
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form">
+
+	<link type="text/css" rel="stylesheet" href="books.css" />
+
+	<jsp:directive.page contentType="text/html" pageEncoding="UTF-8"
+		trimDirectiveWhitespaces="true" />
+	<jsp:output omit-xml-declaration="yes" />
+
+	<form action="j_spring_security_check" method="post">
+		<div class="main">
+			<div class="login_label">
+				<label><spring:message code="to_enter_the_system_enter_the" />:
+				</label>
+			</div>
+			<div class="field">
+				<label for="j_username" class="label_field"><spring:message
+						code="username" />: </label> 
+				<input id="j_username" name="j_username"
+					size="20" maxlength="50" type="text" />
+			</div>
+			<div class="field">
+				<label for="j_password" class="label_field"><spring:message
+						code="password" />: </label> 
+				<input id="j_password" name="j_password"
+					size="20" maxlength="50" type="password" />
+			</div>
+			<div class="login_button">
+				<c:set var="butname">
+					<spring:message code="login" />
+				</c:set>
+				<input type="submit" value="${butname}" />
+			</div>
+		</div>
+	</form>
+</div>

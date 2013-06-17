@@ -7,19 +7,19 @@
                     http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
 	<http pattern="/css/**" security="none" />
-
 	<http auto-config="true">
 		<intercept-url pattern="/favicon.ico" access="ROLE_ANONYMOUS" />
 		<intercept-url pattern="/hello.htm" access="ROLE_USER, ROLE_ADMIN" />
+
+		<intercept-url pattern="/login.htm" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+
+		<form-login login-page="/login.htm"
+			authentication-failure-url="/login_failure.htm" default-target-url="/hello.htm" />
 		<logout logout-success-url="/hello.htm" />
 	</http>
 
 	<authentication-manager>
-		<authentication-provider>
-			<user-service>
-				<user name="admin" password="a999" authorities="ROLE_USER, ROLE_ADMIN" />
-				<user name="user" password="u000" authorities="ROLE_USER" />
-			</user-service>
+		<authentication-provider user-service-ref="customUserDetailsService">
 		</authentication-provider>
 	</authentication-manager>
-</beans:beans>   
+</beans:beans> 

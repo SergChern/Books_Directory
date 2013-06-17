@@ -1,6 +1,7 @@
 <div xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:spring="http://www.springframework.org/tags"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form">
 
 	<link type="text/css" rel="stylesheet" href="books.css" />
 
@@ -8,9 +9,6 @@
 		trimDirectiveWhitespaces="true" />
 	<jsp:output omit-xml-declaration="yes" />
 
-	<a class="color_href" href="list_of_books.htm"><spring:message
-			code="list_of_books" /> </a> <br /> 
-	<a class="color_href"
-		href="list_of_authors.htm"><spring:message code="list_of_authors" />
-	</a> <br />
+
+Spring Security - Sign In Failure
 </div>

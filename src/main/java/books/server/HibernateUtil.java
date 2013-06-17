@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 
 public class HibernateUtil {
 
@@ -74,11 +72,16 @@ public class HibernateUtil {
         }
         return null;
     }
-
-    public static String getUsername() {
+    
+    public static void setUsername(User userLogin) {
         if (user == null)
-            user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return user.getUsername();
+            user = userLogin;
+    }
+    public static String getUsername() {
+        if (user != null)
+          return user.getUsername();
+        else
+            return null;
     }
 
 }
