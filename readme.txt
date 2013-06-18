@@ -1,8 +1,8 @@
 ﻿              Установка демо-версии проекта Books_Directory
 
-1. Распаковать архив Books_Directory.7z на диск D в папку Books_Directory - проект Books_Directory
+1. Восстановить из GitHub проект Books_Directory, например на диск D в папку Books_Directory
 
-2. Восстановить бд demo (вариант удаленной БД postgres)  backup прилагается
+2. Восстановить бд demo (вариант удаленной БД postgres)
 2.1.
 CREATE DATABASE demo
   WITH OWNER = postgres
@@ -14,7 +14,7 @@ CREATE DATABASE demo
 GRANT CONNECT, TEMPORARY ON DATABASE demo TO public;
 GRANT ALL ON DATABASE demo TO postgres;
 
-2.2.  Восстановить books_tar.backup  на бд demo
+2.2.  Восстановить books_tar.backup  на бд demo (контрольный пример)
 
 3. Запускаем package.bat для сборки проекта.
 
@@ -29,4 +29,6 @@ GRANT ALL ON DATABASE demo TO postgres;
 2) Login = "user" 
    password="u000"
 
-  
+P.S. 
+-----
+п. 2.2. по требованию  
