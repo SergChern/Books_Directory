@@ -35,19 +35,27 @@
 		<br />
 
 		<form:input path="id" cssClass="elem_hide" />
-		<form:label path="surname">
-			<spring:message code="surname" />
-		</form:label>
-		<blok_hide>__</blok_hide>
-		<form:input path="surname" />
-		<form:errors path="surname" cssClass="error" />
-		<br />
-		<form:label path="name">
-			<spring:message code="author_name" />
-		</form:label>
-		<blok_hide>____</blok_hide>
-		<form:input path="name" />
-		<form:errors path="name" cssClass="error" />
+		<div class="author_main0">
+			<div class="field">
+				<form:label path="surname" class="label_field">
+					<spring:message code="surname" />
+				</form:label>
+				<form:input path="surname" />
+			</div>
+
+			<div class="field">
+				<form:label path="name" class="label_field">
+					<spring:message code="author_name" />
+				</form:label>
+				<form:input path="name" />
+			</div>
+
+		</div>
+		<div class="author_main2">
+			<form:errors path="surname" cssClass="error" />
+			<br />
+			<form:errors path="name" cssClass="error" />
+		</div>
 		<br />
 	</form:form>
 </div>

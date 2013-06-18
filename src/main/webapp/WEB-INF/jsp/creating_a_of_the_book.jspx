@@ -32,52 +32,54 @@
 		<br />
 		<form:input path="id" cssClass="elem_hide" />
 		<br />
-		<form:label path="name" cssClass="creat_book_label_right">
-			<spring:message code="name" />
-		</form:label>
-		<blok_hide>____</blok_hide>
-		<form:input path="name" />
-		<form:errors path="name" cssClass="error" />
-		<br />
-		<br />
+		<div class="book_main0">
+			<div class="field">
+				<form:label path="name" class="creat_book_label_right">
+					<spring:message code="name" />
+				</form:label>
+				<form:input path="name" size="25" />
+			</div>
 
-		<form:label path="brief_Description" cssClass="creat_book_label_right">
-			<spring:message code="brief_description" />
-		</form:label>
-		<blok_hide>____</blok_hide>
-		<form:textarea path="brief_Description" rows="5" cols="50" />
-		<form:errors path="brief_Description" cssClass="error" />
-		<br />
-		<br />
+			<div class="field">
+				<form:label path="brief_Description"
+					cssClass="creat_book_label_right">
+					<spring:message code="brief_description" />
+				</form:label>
+				<form:textarea path="brief_Description" rows="7" cols="20" />
+			</div>
+			<div class="field">
+				<form:label path="year_Of_Publication"
+					cssClass="creat_book_label_right">
+					<spring:message code="year_of_publication" />
+				</form:label>
+				<form:input path="year_Of_Publication" size="25" />
+			</div>
+			<div class="field">
+				<form:label path="authors" cssClass="creat_book_label_right">
+					<spring:message code="authors" />
+				</form:label>
+				<form:select class="book_select" path="authors" id="authors" multiple="true" size="6"
+					itemValue="id" >
+					<c:forEach var="author" items="${book.authors}">
+						<OPTION SELECTED="selected" value="${author.id}">${author.name}__${author.surname}</OPTION>
+					</c:forEach>
 
-		<form:label path="year_Of_Publication"
-			cssClass="creat_book_label_right">
-			<spring:message code="year_of_publication" />
-		</form:label>
-		<blok_hide>____</blok_hide>
-		<form:input path="year_Of_Publication" />
-		<form:errors path="year_Of_Publication" cssClass="error" />
-		<br />
-		<br />
+					<c:forEach var="author0" items="${allAuthors}">
+						<OPTION value="${author0.id}">${author0.name}__${author0.surname}</OPTION>
+					</c:forEach>
 
-		<form:label path="authors" cssClass="creat_book_label_right">
-			<spring:message code="authors" />
-		</form:label>
-		<blok_hide>____</blok_hide>
-		<form:select path="authors" id="authors" multiple="true" size="6"
-			itemValue="id">
-			<c:forEach var="author" items="${book.authors}">
-				<OPTION SELECTED="selected" value="${author.id}">${author.name}__${author.surname}</OPTION>
-			</c:forEach>
+				</form:select>
+			</div>
+		</div>
+		<div class="book_main2">
+			<form:errors path="name" cssClass="error" />
+			<br /> <br />
+			<form:errors path="brief_Description" cssClass="error" />
+			<br /> <br /> <br /> <br /> <br /> <br />
+			<form:errors path="year_Of_Publication" cssClass="error" />
+			<br /> <br />
+			<form:errors path="authors" cssClass="error" />
+		</div>
 
-			<c:forEach var="author0" items="${allAuthors}">
-				<OPTION value="${author0.id}">${author0.name}__${author0.surname}</OPTION>
-			</c:forEach>
-
-		</form:select>
-
-		<form:errors path="authors" cssClass="error" />
-		<br />
-		<br />
 	</form:form>
 </div>

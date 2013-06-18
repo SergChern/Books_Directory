@@ -10,5 +10,9 @@
 	<jsp:output omit-xml-declaration="yes" />
 
 
-Spring Security - Sign In Failure
+	<div class="login_label">
+		Spring Security -
+		<spring:message code="wrong_username_password" />
+	</div>
+
 </div>

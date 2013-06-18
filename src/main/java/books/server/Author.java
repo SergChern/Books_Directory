@@ -17,8 +17,6 @@ public class Author implements Serializable {
     Set<Book> books = new HashSet<Book>();
 
     public Author() {
-        surname = " ";
-        name = " ";
     }
 
     public Long getId() {

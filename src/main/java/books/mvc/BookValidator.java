@@ -23,6 +23,6 @@ public class BookValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "year_Of_Publication",
                 "year_Of_Publication_is_required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "authors",
-                "year_Of_Publication_is_required");
+                "authors_is_required");
     }
 }

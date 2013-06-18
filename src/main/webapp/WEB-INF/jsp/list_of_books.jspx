@@ -13,9 +13,7 @@
 		<br />
 		<spring:message code="enter_the_name_of_the_book" />
 		<blok_hide>__</blok_hide>
-
 		<form:input path="name" />
-
 		<blok_hide>__</blok_hide>
 		<c:set var="butname">
 			<spring:message code="look_for_the_book" />

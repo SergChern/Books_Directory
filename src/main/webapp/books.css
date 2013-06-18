@@ -63,8 +63,8 @@ caption_greasy {
 .error {
 	color: #ff0000;
 	font-weight: bold;
-	position: relative;
-	left: 20px;
+	float: left;
+	margin-top: 15px;
 }
 
 .text-hide {
@@ -81,7 +81,8 @@ blok_hide {
 	float: left;
 	width: 120px;
 	text-align: right;
-	white-space: pre
+	white-space: pre padding-right :   10px;
+	margin-left: 10px;
 }
 
 .elem_hide {
@@ -94,12 +95,15 @@ blok_hide {
 .label_field {
 	float: left;
 	padding-right: 10px;
+	margin-left: 10px;
 }
 
 .field {
 	clear: both;
 	text-align: right;
 	line-height: 25px;
+	margin-top: 10px;
+	margin-right: 10px;
 }
 
 .login_button {
@@ -117,10 +121,42 @@ blok_hide {
 .main {
 	border: 2px solid black;
 	float: left;
-	width: 300px;
-	height: 130px;
+	width: 330px;
+	height: 150px;
 	position: absolute;
 	left: 50%;
 	top: 50%;
 	margin: -100px 0 0 -150px;
+}
+
+.author_main0 {
+	float: left;
+	width: 250px;
+	height: 100px;
+	position: absolute;
+}
+
+.author_main2 {
+	left: 250px;
+	width: 200px;
+	height: 100px;
+	position: relative;
+}
+
+.book_main0 {
+	float: left;
+	width: 350px;
+	height: 350px;
+	position: absolute;
+}
+
+.book_main2 {
+	left: 350px;
+	width: 300px;
+	height: 350px;
+	position: relative;
+}
+
+.book_select {
+	width: 185px;
 }
