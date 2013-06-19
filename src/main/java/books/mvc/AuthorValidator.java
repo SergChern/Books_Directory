@@ -18,6 +18,6 @@ public class AuthorValidator implements Validator {
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "surname", "surname_is_required");
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "name_is_required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "name_of_is_required");
     }
 }

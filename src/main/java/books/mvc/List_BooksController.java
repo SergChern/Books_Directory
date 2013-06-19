@@ -7,8 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,7 +16,6 @@ import org.springframework.web.servlet.view.RedirectView;
 import books.server.Author;
 import books.server.Book;
 import books.server.HibernateUtil;
-import books.server.Snake;
 import books.services.ZZZService;
 
 @Controller
@@ -51,10 +48,9 @@ public class List_BooksController extends SimpleFormController {
             zzzService.delete(book);
         }
 
-        Map referenceData = new HashMap();
-        List<Snake> snakes = zzzService.getSnake("list_of_books");
-        getServletContext().setAttribute("snakes", snakes);
-
+        Map referenceData = new HashMap();       
+        getServletContext().setAttribute("snake", "list_of_books");
+        
         List<Book> list_Book = null;
         if (seekName != null && !seekName.isEmpty())
             list_Book = zzzService.findBooks(seekName);
@@ -65,7 +61,6 @@ public class List_BooksController extends SimpleFormController {
             if (book.getAuthors().isEmpty())
                 book.getAuthors().add(new Author());
 
-        getServletContext().setAttribute("login0", HibernateUtil.getUsername());
         referenceData.put("books", list_Book);
         return referenceData;
     }

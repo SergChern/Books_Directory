@@ -1,7 +1,6 @@
 package books.mvc;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +13,6 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.view.RedirectView;
 
 import books.server.Author;
-import books.server.Snake;
 import books.services.ZZZService;
 
 @Controller
@@ -40,8 +38,7 @@ public class Create_AuthorController extends SimpleFormController {
 
     protected Map referenceData(HttpServletRequest request) throws Exception {
         Map referenceData = new HashMap();
-        List<Snake> snakes = zzzService.getSnake("create_the_author");
-        getServletContext().setAttribute("snakes", snakes);
+        getServletContext().setAttribute("snake", "create_the_author");
         return referenceData;
     }
 

@@ -18,7 +18,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import books.server.Author;
 import books.server.Book;
-import books.server.Snake;
 import books.services.ZZZService;
 
 @Controller
@@ -33,6 +32,7 @@ public class Creating_BookController extends SimpleFormController {
     protected Object formBackingObject(HttpServletRequest request) throws Exception {
         String param = request.getParameter("id");
         Book book = null;
+        id = null;
         if (param != null && !param.isEmpty()) {
             id = new Long(param);
             book = zzzService.getBook(id);
@@ -43,14 +43,11 @@ public class Creating_BookController extends SimpleFormController {
 
     protected Map referenceData(HttpServletRequest request) throws Exception {
         Map referenceData = new HashMap();
-        List<Snake> snakes = null;
 
         if (id == null)
-            snakes = zzzService.getSnake("creating_a_of_the_book");
+            getServletContext().setAttribute("snake", "creating_a_of_the_book");
         else
-            snakes = zzzService.getSnake("modification_book");
-
-        getServletContext().setAttribute("snakes", snakes);
+            getServletContext().setAttribute("snake", "modification_book");
 
         List aList = zzzService.getAuthorAll(id);
         getServletContext().setAttribute("allAuthors", aList);

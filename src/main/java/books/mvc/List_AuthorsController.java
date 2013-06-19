@@ -5,16 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
 import books.server.Author;
 import books.server.Book;
 import books.server.HibernateUtil;
-import books.server.Snake;
 import books.services.ZZZService;
 
 @Controller
@@ -43,9 +39,7 @@ public class List_AuthorsController extends SimpleFormController {
             }
         }
         Map referenceData = new HashMap();
-        List<Snake> snakes = zzzService.getSnake("list_of_authors");
-        getServletContext().setAttribute("snakes", snakes);
-        getServletContext().setAttribute("login0", HibernateUtil.getUsername());
+        getServletContext().setAttribute("snake", "list_of_authors");
 
         List list_Author = zzzService.getAuthors();
         referenceData.put("authors", list_Author);

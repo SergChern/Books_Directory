@@ -70,10 +70,10 @@ http://www.springframework.org/schema/mvc
 		</property>
 
 	</bean>
+
 	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver"
 		id="viewResolver">
 		<property name="viewClass" value="books.tiles.AutoTilesView" />
-
 	</bean>
 
 	<bean id="validatorFactory"

@@ -1,5 +1,7 @@
 package books.tiles;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -7,16 +9,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tiles.Attribute;
-import org.apache.tiles.AttributeContext;
 import org.apache.tiles.TilesContainer;
 import org.apache.tiles.servlet.context.ServletUtil;
 import org.springframework.web.servlet.view.tiles2.TilesView;
 
+import books.server.HibernateUtil;
+import books.server.Snake;
+
 public class AutoTilesView extends TilesView {
 
-    private static final String PREFIX = "/WEB-INF/jsp/";
-    private static final String SUFFIX = ".jspx";
+    private static List snakes = new ArrayList();
 
     @Override
     protected void renderMergedOutputModel(Map model, HttpServletRequest request,
@@ -30,16 +32,30 @@ public class AutoTilesView extends TilesView {
                     + "Have you added a TilesConfigurer to your web application context?");
         }
 
-        AttributeContext attributeContext = container.getAttributeContext(request, response);
+        String snake = (String) servletContext.getAttribute("snake");
+        if (snake != null) {
+            List<Snake> snakes0 = getSnake(snake);
+            servletContext.setAttribute("snakes", snakes0);
+        }
 
-        StringBuilder builder = new StringBuilder();
-        builder.append(PREFIX);
-        builder.append(this.getUrl());
-        builder.append(SUFFIX);
-
-        attributeContext
-                .putAttribute("body", Attribute.createTemplateAttribute(builder.toString()));
-
+        servletContext.setAttribute("login0", HibernateUtil.getUsername());
         super.renderMergedOutputModel(model, request, response);
+    }
+
+    public List<Snake> getSnake(String leksem) {
+        if (snakes.size() == 1)
+            snakes.add("hello");
+        int i = snakes.indexOf(leksem);
+        if (i == -1)
+            snakes.add(leksem);
+        else
+            while (i + 1 < snakes.size())
+                snakes.remove(i + 1);
+
+        List<Snake> snakeList = new ArrayList();
+        for (i = 0; i < snakes.size(); i++) {
+            snakeList.add(new Snake((String) snakes.get(i)));
+        }
+        return snakeList;
     }
 }

@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
 import books.server.Book;
-import books.server.Snake;
 import books.services.ZZZService;
 
 @Controller
@@ -20,8 +19,7 @@ public class List_Books_AuthorController extends AbstractController {
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        List<Snake> snakes = zzzService.getSnake("list_of_books_by_the_author");
-        getServletContext().setAttribute("snakes", snakes);
+        getServletContext().setAttribute("snake", "list_of_books_by_the_author");
 
         String param = request.getParameter("list");
         List list_Books_Author = null;

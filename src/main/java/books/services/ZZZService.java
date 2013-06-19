@@ -1,6 +1,5 @@
 package books.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -13,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import books.server.Author;
 import books.server.Book;
 import books.server.HibernateUtil;
-import books.server.Snake;
 import books.server.dao.AuthorDao;
 import books.server.dao.BookDao;
 import books.server.dao.IEntityDao;
@@ -22,7 +20,6 @@ import books.server.dao.IEntityDao;
 public class ZZZService {
     private BookDao bookDao;
     private AuthorDao authorDao;
-    private List snakes = new ArrayList();
     Session session = null;
     Query query = null;
 
@@ -57,23 +54,6 @@ public class ZZZService {
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public Book getBook(Long id) throws IllegalArgumentException {
         return bookDao.load(id);
-    }
-
-    public List<Snake> getSnake(String leksem) {
-        if (snakes.size() == 1)
-            snakes.add("hello");
-        int i = snakes.indexOf(leksem);
-        if (i == -1)
-            snakes.add(leksem);
-        else
-            while (i + 1 < snakes.size())
-                snakes.remove(i + 1);
-
-        List<Snake> snakeList = new ArrayList();
-        for (i = 0; i < snakes.size(); i++) {
-            snakeList.add(new Snake((String) snakes.get(i)));
-        }
-        return snakeList;
     }
 
     @Transactional(readOnly = false, propagation = Propagation.SUPPORTS)
