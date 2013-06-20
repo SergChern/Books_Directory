@@ -33,10 +33,8 @@ public class AutoTilesView extends TilesView {
         }
 
         String snake = (String) servletContext.getAttribute("snake");
-        if (snake != null) {
-            List<Snake> snakes0 = getSnake(snake);
-            servletContext.setAttribute("snakes", snakes0);
-        }
+        if (snake != null)
+            servletContext.setAttribute("snakes", getSnake(snake));
 
         servletContext.setAttribute("login0", HibernateUtil.getUsername());
         super.renderMergedOutputModel(model, request, response);

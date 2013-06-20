@@ -29,6 +29,3 @@ GRANT ALL ON DATABASE demo TO postgres;
 2) Login = "user" 
    password="u000"
 
-P.S. 
------
-п. 2.2. по требованию  
