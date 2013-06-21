@@ -57,7 +57,7 @@
 										<td class="td_bord">${book.brief_Description}</td>
 										<td class="td_bord">${book.year_Of_Publication}</td>
 										<td class="td_bord">${author}</td>
-										<td><c:if test="${login0 == 'admin'}">
+										<td class="td_bord"><c:if test="${login0 == 'admin'}">
 												<a class="color_href"
 													href="creating_a_of_the_book.htm?id=${book.id}"><spring:message
 														code="retrofit" /> </a>,
@@ -87,7 +87,7 @@
 										<td class="td_bord">${book.brief_Description}</td>
 										<td class="td_bord">${book.year_Of_Publication}</td>
 										<td class="td_bord">${author}</td>
-										<td><c:if test="${login0 == 'admin'}">
+										<td class="td_bord"><c:if test="${login0 == 'admin'}">
 												<a class="color_href"
 													href="creating_a_of_the_book.htm?id=${book.id}"><spring:message
 														code="retrofit" /> </a>,

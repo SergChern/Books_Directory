@@ -22,7 +22,7 @@ GRANT ALL ON DATABASE demo TO postgres;
 
     localhost:8800/hello.htm
 
-5. Пароли для входа в систему
+5. Пароли для входа в систему (двойные кавычки не учитывать)
 
 1) Login = "admin" 
    password = "a999"

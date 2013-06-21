@@ -38,7 +38,7 @@
 						<tr>
 							<td class="lctd">${author.surname}</td>
 							<td class="td_bord">${author.name}</td>
-							<td><c:if test="${login0 == 'admin'}">
+							<td class="td_bord"><c:if test="${login0 == 'admin'}">
 									<a class="color_href"
 										href="create_the_author.htm?id=${author.id}"> <spring:message
 											code="retrofit" /> </a>,
@@ -56,7 +56,7 @@
 						<tr class="tr_even">
 							<td class="lctd">${author.surname}</td>
 							<td class="td_bord">${author.name}</td>
-							<td><c:if test="${login0 == 'admin'}">
+							<td class="td_bord"><c:if test="${login0 == 'admin'}">
 									<a class="color_href"
 										href="create_the_author.htm?id=${author.id}"><spring:message
 											code="retrofit" /> </a>,
