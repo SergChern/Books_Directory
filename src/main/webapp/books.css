@@ -81,8 +81,9 @@ blok_hide {
 	float: left;
 	width: 120px;
 	text-align: right;
-	white-space: pre padding-right :   10px;
+	white-space: pre;
 	margin-left: 10px;
+	padding-right: 10px;
 }
 
 .elem_hide {
@@ -127,17 +128,18 @@ blok_hide {
 	left: 50%;
 	top: 50%;
 	margin: -100px 0 0 -150px;
+	border-radius: 8px;
 }
 
 .author_main0 {
 	float: left;
-	width: 250px;
+	width: 270px;
 	height: 100px;
 	position: absolute;
 }
 
 .author_main2 {
-	left: 250px;
+	left: 270px;
 	width: 200px;
 	height: 100px;
 	position: relative;
@@ -145,13 +147,13 @@ blok_hide {
 
 .book_main0 {
 	float: left;
-	width: 350px;
+	width: 370px;
 	height: 350px;
 	position: absolute;
 }
 
 .book_main2 {
-	left: 350px;
+	left: 370px;
 	width: 300px;
 	height: 350px;
 	position: relative;
@@ -159,4 +161,43 @@ blok_hide {
 
 .book_select {
 	width: 185px;
+	border-radius: 5px;
+	border: 1px solid #cecece;
+	background-color: #F6F6f6;
+	padding: 0px 3px 0px 3px;
+	color: #444;
+}
+
+.get {
+	padding: 0px 3px 0px 3px;
+	border-radius: 5px;
+	border: 1px solid #cecece;
+	height: 22px;
+	background: #f6f6f6;
+}
+
+.get_textarea {
+	padding: 0px 3px 0px 3px;
+	border-radius: 5px;
+	border: 1px solid #cecece;
+	background: #f6f6f6;
+}
+
+.submit,.right_but {
+	cursor: pointer;
+	height: 30px;
+	border: 1px solid #cecece;
+	background: #f6f6f6;
+	box-shadow: inset 0px 20px 20px #ffffff;
+	border-radius: 5px;
+	padding: 0px 5px 0px 5px;
+}
+
+.submit:active,.right_but:active {
+	background: blue;
+}
+
+.submit:hover,.right_but:hover {
+	box-shadow: inset 0px -20px 20px #ffffff;
+	background: blue;
 }

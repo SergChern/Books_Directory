@@ -19,19 +19,19 @@
 				<label for="j_username" class="label_field"><spring:message
 						code="username" />: </label> 
 				<input id="j_username" name="j_username"
-					size="20" maxlength="50" type="text" />
+					size="20" maxlength="50" type="text" class="get" />
 			</div>
 			<div class="field">
 				<label for="j_password" class="label_field"><spring:message
 						code="password" />: </label> 
 				<input id="j_password" name="j_password"
-					size="20" maxlength="50" type="password" />
+					size="20" maxlength="50" type="password" class="get" />
 			</div>
 			<div class="login_button">
 				<c:set var="butname">
 					<spring:message code="login" />
 				</c:set>
-				<input type="submit" value="${butname}" />
+				<input type="submit" value="${butname}" class="submit" />
 			</div>
 		</div>
 	</form>

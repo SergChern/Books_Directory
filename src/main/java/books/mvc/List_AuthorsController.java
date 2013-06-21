@@ -10,7 +10,6 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
 
 import books.server.Author;
 import books.server.Book;
-import books.server.HibernateUtil;
 import books.services.ZZZService;
 
 @Controller
