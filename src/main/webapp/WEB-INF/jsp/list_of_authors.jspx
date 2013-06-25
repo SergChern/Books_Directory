@@ -4,10 +4,70 @@
 	xmlns:form="http://www.springframework.org/tags/form">
 
 	<link type="text/css" rel="stylesheet" href="books.css" />
+	<link href="media/css/demo_page.css" rel="stylesheet" type="text/css" />
+	<link href="media/css/demo_table.css" rel="stylesheet" type="text/css" />
+	<link href="media/css/demo_table_jui.css" rel="stylesheet"
+		type="text/css" />
+	<link href="media/css/jquery-ui-1.8.4.custom.css" rel="stylesheet"
+		type="text/css" media="all" />
 
 	<jsp:directive.page contentType="text/html" pageEncoding="UTF-8"
-		trimDirectiveWhitespaces="true" />
-	<jsp:output omit-xml-declaration="yes" />
+		trimDirectiveWhitespaces="true" import="jquery.datatables.model.*" />
+	<jsp:output omit-xml-declaration="true" />
+
+	<![CDATA[<script type="text/javascript" src="scripts/jquery-1.10.1.js"></script>]]>
+	<![CDATA[<script type="text/javascript" src="media/js/jquery.dataTables.min.js"></script>]]>
+	<c:choose>
+		<c:when test="${empty sAjaxSource}">
+			<script type="text/javascript">
+$(document).ready(function(){
+  $('#grid').dataTable({
+	  "sPaginationType": "full_numbers",
+	  "bJQueryUI": true,
+	  "sDom": "Tfrtip",
+	  "oLanguage": {
+		    "sUrl": '<spring:message code="lang_table" />'
+		    }
+  });
+});
+</script>
+		</c:when>
+		<c:otherwise>
+			<script type="text/javascript">
+        $(document).ready(function () {
+            $("#grid").dataTable({
+            	"sPaginationType": "full_numbers",
+            	"bJQueryUI": true,
+            	"bProcessing": true,
+            	"iDisplayLength" : 10,
+                "sAjaxSource": "/list_of_authors.htm",               
+          	    "oLanguage": {
+      		      "sUrl": '<spring:message code="lang_table" />'
+      		    }, 
+                      
+                "fnServerData": function ( sSource, aoData, fnCallback ) {
+                    $.ajax( {
+                        dataType: "json",
+                        type: "GET",
+                        url: sSource,
+                        contentType: "application/json",
+                        mimeType: "application/json",
+                                                
+                        data: aoData,
+                        success: function (data) {
+                        	   var result = data.text;
+                        	   $("#grid").text(result);
+                        	  },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log(txtStatus, errorThrown); // use alert() if you prefer
+                          }
+                    } );
+                }
+            });
+        });
+        </script>
+		</c:otherwise>
+	</c:choose>
 
 	<form:form method="POST" action="create_the_author.htm"
 		commandName="author">
@@ -21,57 +81,68 @@
 			</c:set>
 			<input class="right_but" type="submit" value="${butname}" />
 		</c:if>
-		<table class="table_bord">
-			<tr>
-				<th class="lc"><spring:message code="surname" />
-				</th>
-				<th class="gray"><spring:message code="author_name" />
-				</th>
-				<th class="gray"><spring:message code="actions" />
-				</th>
-
-			</tr>
-			<c:set var="even" value="false" />
-			<c:forEach var="author" items="${authors}">
-				<c:choose>
-					<c:when test="${even == 'false'}">
-						<tr>
-							<td class="lctd">${author.surname}</td>
-							<td class="td_bord">${author.name}</td>
-							<td class="td_bord"><c:if test="${login0 == 'admin'}">
-									<a class="color_href"
-										href="create_the_author.htm?id=${author.id}"> <spring:message
-											code="retrofit" /> </a>,
+		<table id="grid" class="table_bord">
+			<thead>
+				<tr>
+					<th class="lc"><spring:message code="surname" />
+					</th>
+					<th class="gray"><spring:message code="author_name" />
+					</th>
+					<th class="gray"><spring:message code="actions" />
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:set var="even" value="false" />
+				<c:forEach var="author" items="${authors}">
+					<c:choose>
+						<c:when test="${even == 'false'}">
+							<tr>
+								<td class="lctd">${author.surname}</td>
+								<td class="td_bord">${author.name}</td>
+								<td class="td_bord"><c:if test="${login0 == 'admin'}">
+										<a class="color_href"
+											href="create_the_author.htm?id=${author.id}"> <spring:message
+												code="retrofit" /> </a>,
                                     <a class="color_href"
-										href="list_of_authors.htm?del=${author.id}"><spring:message
-											code="to_delete" /> </a>,
-								</c:if> 
-								<a class="color_href"
-								href="list_of_books_by_the_author.htm?list=${author.id}"><spring:message
-										code="book_list" /> </a></td>
-						</tr>
-						<c:set var="even" value="true" />
+											href="list_of_authors.htm?del=${author.id}"><spring:message
+												code="to_delete" /> </a>,
+								</c:if> <a class="color_href"
+									href="list_of_books_by_the_author.htm?list=${author.id}"><spring:message
+											code="book_list" /> </a></td>
+							</tr>
+							<c:set var="even" value="true" />
+						</c:when>
+						<c:otherwise>
+							<tr class="tr_even">
+								<td class="lctd">${author.surname}</td>
+								<td class="td_bord">${author.name}</td>
+								<td class="td_bord"><c:if test="${login0 == 'admin'}">
+										<a class="color_href"
+											href="create_the_author.htm?id=${author.id}"><spring:message
+												code="retrofit" /> </a>,
+                                    <a class="color_href"
+											href="list_of_authors.htm?del=${author.id}"><spring:message
+												code="to_delete" /> </a>,
+								</c:if> <a class="color_href"
+									href="list_of_books_by_the_author.htm?list=${author.id}"><spring:message
+											code="book_list" /> </a></td>
+							</tr>
+							<c:set var="even" value="false" />
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:choose>
+					<c:when test="${empty sAjaxSource}">
 					</c:when>
 					<c:otherwise>
-						<tr class="tr_even">
-							<td class="lctd">${author.surname}</td>
-							<td class="td_bord">${author.name}</td>
-							<td class="td_bord"><c:if test="${login0 == 'admin'}">
-									<a class="color_href"
-										href="create_the_author.htm?id=${author.id}"><spring:message
-											code="retrofit" /> </a>,
-                                    <a class="color_href"
-										href="list_of_authors.htm?del=${author.id}"><spring:message
-											code="to_delete" /> </a>,
-								</c:if> 
-								<a class="color_href"
-								href="list_of_books_by_the_author.htm?list=${author.id}"><spring:message
-										code="book_list" /> </a></td>
+						<tr>
+							<td colspan="5" class="dataTables_empty">Loading data from
+								server</td>
 						</tr>
-						<c:set var="even" value="false" />
 					</c:otherwise>
 				</c:choose>
-			</c:forEach>
+			</tbody>
 		</table>
 	</form:form>
 </div>

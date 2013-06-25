@@ -39,8 +39,14 @@ public class List_AuthorsController extends SimpleFormController {
         }
         Map referenceData = new HashMap();
         getServletContext().setAttribute("snake", "list_of_authors");
+        List list_Author = null;
 
-        List list_Author = zzzService.getAuthors();
+        getServletContext().setAttribute("sAjaxSource", "");
+        list_Author = zzzService.getAuthors();
+        // getServletContext().setAttribute("sAjaxSource",
+        // "/list_of_authors.htm");
+        // list_Author = new ArrayList();
+
         referenceData.put("authors", list_Author);
         return referenceData;
     }

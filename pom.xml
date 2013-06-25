@@ -358,6 +358,35 @@
 			<artifactId>postgresql</artifactId>
 			<version>9.0-801.jdbc4</version>
 		</dependency>
+		<!-- Jackson -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.9.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-lgpl</artifactId>
+			<version>1.9.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-lgpl</artifactId>
+			<version>1.9.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>org.json</artifactId>
+			<version>2011-04-05</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/java-json.jar</systemPath>
+		</dependency>
+
 		<!-- webservice dependencies -->
 		<dependency>
 			<groupId>com.sun.xml.ws</groupId>
